@@ -1,0 +1,4 @@
+imaplib2 
+streamlit 
+python-dotenv
+PyPDF2
