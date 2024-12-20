@@ -1,3 +1,8 @@
 .env
 __pycache__
 .git
+.wwebjs_auth
+.wwebjs_cache
+node_modules
+.cache
+Email Assistant Agent Demo.mp4

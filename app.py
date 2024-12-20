@@ -21,7 +21,7 @@ st.write("Monitor your Gmail inbox, classify emails, generate responses effortle
 
 # User inputs
 email_id = st.text_input("Enter your Email ID (Gmail):", value="allu526687@gmail.com")
-app_password = st.text_input("Enter your App Password (Gmail):", value="...",type="password")
+app_password = st.text_input("Enter your App Password (Gmail):", value=".....",type="password")
 whatsapp_number = st.text_input("Enter your Whatsapp Number:", value="7021578746")
 additional_info = st.text_input("Additional Details which type of emails has more priority to you:", value="I am a SDE so all the major deployments, bugs, glitchs etc are an priority mails for me as after deployment there maybe major issue.")
 
@@ -105,11 +105,13 @@ if monitor and email_id and app_password:
                         user_email=email_id,
                         additional_info=additional_info,
                     )
-                    
+
                     content_analysis = email_analysis.get("content_analysis", {})
                     priority_decision = email_analysis.get("priority_decision", {})
                     response_action = email_analysis.get("response_action", {})
+
                     print(content_analysis)
+                    print(priority_decision)
                     print(response_action)
                     # Display email details in Streamlit expander
                     with st.expander(f"📩 {subject}"):
@@ -120,16 +122,16 @@ if monitor and email_id and app_password:
                         st.write(f"**Response:** {response_action.get('response', 'No response generated')}")
 
                     # Handle email actions based on priority
-                    if priority_decision.get("spam"):
+                    if priority_decision.get("spam")=="True":
                         st.write("Email marked as spam and moved to Spam folder.")
                         move_to_folder(imap, mail_id, "[Gmail]/Spam")
-                    elif priority_decision.get("priority"):
-                        
+
+                    elif priority_decision.get("priority")=="HIGH":
                         # Add label, save to drafts, and notify via WhatsApp
-                        add_label(imap, mail_id, "High Priority")
+                        add_label(imap, mail_id, "High_Priority")
                         save_to_draft(
                             imap,
-                            email_id=email_id,
+                            email_id=sender,
                             subject=f"RE: {subject}",
                             body=response_action.get("response", "No response available"),
                         )
@@ -142,9 +144,9 @@ if monitor and email_id and app_password:
                             }
                         )
 
-                    elif not priority_decision.get("priority"):
+                    elif priority_decision.get("priority")=="LOW":
                         # Add label for low-priority emails
-                        add_label(imap, mail_id, "Low Priority")
+                        add_label(imap, mail_id, "Low_Priority")
                         st.write("Low-priority email labeled.")
 
                     # Mark email as read

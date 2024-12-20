@@ -13,7 +13,7 @@ Use the following structure for your response:
     "intent": "...",
     "tone": "...",
     "keywords": [...],
-    "internal_mail": true/false,
+    "internal_mail": "True/False",
 }
 """
 
@@ -26,12 +26,12 @@ Your task is to:
    - The importance of the email content.
 2. Provide a reason for the priority classification in 4 to 5 words.
 3. You can use utils detect_spam function for reference which detects spam, also in additional you can use your knowledge base too for judging
-4. If it is spam priority can be set to None and reason as Spam
+4. If it is spam priority can be set to NA and reason as Spam
 
 Use this structure for your response:
 {
-    "spam": True/False,
-    "priority": "HIGH/LOW",
+    "spam": "True/False",
+    "priority": "HIGH/LOW/NA",
     "reason": "..."
 }
 """
@@ -42,11 +42,11 @@ response_prompt= """
 1. Maintain the tone (casual for internal, professional for external).
 2. Save responses to draft if user rejects them for sending.
 3. For spam emails, archive directly.
-4. Response attribute should contain response only for high priority emails , fow low or spam keep it None.
+4. Response attribute should contain response only for high priority emails , fow low or spam keep it NA in string.
 
 4. Output:
 {
-    "response": "...",
+    "response": "NA / proper response generated text...",
     "action": "draft/send/archive"
 }
 """

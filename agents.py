@@ -2,6 +2,7 @@ import autogen
 from autogen import UserProxyAgent, AssistantAgent
 from config import llama_config
 from agent_prompts import content_prompt, priority_prompt, response_prompt
+from langchain_core.output_parsers import JsonOutputParser
 
 from utils import detect_spam, is_internal_email
 import json
@@ -73,17 +74,28 @@ def process_email(sender, subject, body, user_email, additional_info):
     user_proxy.initiate_chat(groupchat_manager, message=email_message)
     # print(groupchat.messages[1])
     # print(groupchat.messages[3])
-    # Clean content by replacing newlines and any other unwanted whitespace
-    clean_content_analysis = groupchat.messages[1]['content'].replace("\n", "").replace("\r", "").strip()
-    clean_priority_decision = groupchat.messages[2]['content'].replace("\n", "").replace("\r", "").strip()
-    clean_response_action = groupchat.messages[3]['content'].replace("\n", "").replace("\r", "").strip()
 
-    # Parse the cleaned content
-    content_analysis = json.loads(clean_content_analysis)
-    priority_decision = json.loads(clean_priority_decision)
-    response_action = json.loads(clean_response_action)
+    # Extract messages
+    raw_messages = groupchat.messages
+
+    def sanitize_and_parse_json(message):
+        """
+        Replace invalid values like 'None' with valid JSON equivalents and parse.
+        """
+        try:
+            return json.loads(message)
+        except (json.JSONDecodeError, KeyError) as e:
+            print(f"Error parsing message: {message}, Error: {e}")
+            return {}
+
+    # Parse each agent's response
+    content_analysis = sanitize_and_parse_json(raw_messages[1]["content"])
+    priority_decision = sanitize_and_parse_json(raw_messages[2]["content"])
+    response_action = sanitize_and_parse_json(raw_messages[3]["content"])
+
     print(response_action)
-
+    print(response_action["action"])
+    print("2")
     return {
         "content_analysis": content_analysis,
         "priority_decision": priority_decision,

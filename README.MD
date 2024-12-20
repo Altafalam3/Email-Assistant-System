@@ -50,7 +50,17 @@ Altafalalam3-Email-Assistant-Agents/
 
 5. Run the application:
    ```
-   python app.py
+   streamlit run app.py
+   ```
+
+6. Open new terminal, Go to zbot folder:
+   ```
+   npm i
+   ```
+
+7. Run command :
+   ```
+   npm start
    ```
 
 ## Usage
