@@ -21,6 +21,14 @@ This project utilizes Large Language Models (LLMs) powered by the Autogen multi-
 
 ---
 
+## 🏷️ Email Labels  
+
+- **Spam Emails** → Moved to **Spam Folder**.  
+- **High-Priority Emails** → Labeled **High Priority** and saved as drafts.  
+- **Low-Priority Emails** → Labeled **Low Priority** for later review.  
+
+---
+
 ## 📂 Directory Structure
 
 ```
@@ -143,19 +151,35 @@ GMAIL_IMAP_SERVER=imap.gmail.com
 GMAIL_IMAP_PORT=993
 ```
 
+👉 Obtain a **GROQ API Key** here: [GROQ Console](https://console.groq.com/keys)  
+
 ---
 
+## 🤝 Contributing  
+We welcome contributions to enhance **Altafalam3-Email-Assistant-Agents**!  
 
-## 🏷️ Labels
-- **Spam Emails** → Moved to **Spam Folder**.
-- **High-Priority Emails** → Labeled and Drafted.
-- **Low-Priority Emails** → Labeled as **Low Priority**.
----
+To contribute:  
 
+1. **Fork** the repository.  
 
-## 👨‍💻 Contributing
-Feel free to submit pull requests to improve the project or fix bugs.
----
+2. **Create a new branch:**  
+   ```bash
+   git checkout -b feature-name
+   ```  
 
-## 📬 Contact
-For issues, contact **altaf526687@gmail.com** or open a GitHub issue.
+3. **Commit your changes:**  
+   ```bash
+   git commit -m "Add new feature"
+   ```  
+
+4. **Push to your branch:**  
+   ```bash
+   git push origin feature-name
+   ```  
+
+5. **Open a Pull Request.**  
+
+---  
+
+## 🛡️ License  
+This project is licensed under the **MIT License**.
