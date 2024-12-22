@@ -21,7 +21,7 @@ st.write("Monitor your Gmail inbox, classify emails, generate responses effortle
 
 # User inputs
 email_id = st.text_input("Enter your Email ID (Gmail):", value="allu526687@gmail.com")
-app_password = st.text_input("Enter your App Password (Gmail):", value=".....",type="password")
+app_password = st.text_input("Enter your App Password (Gmail):", value="bada sybq jymf khuv",type="password")
 whatsapp_number = st.text_input("Enter your Whatsapp Number:", value="7021578746")
 additional_info = st.text_input("Additional Details which type of emails has more priority to you:", value="I am a SDE so all the major deployments, bugs, glitchs etc are an priority mails for me as after deployment there maybe major issue.")
 

@@ -2,7 +2,6 @@ import autogen
 from autogen import UserProxyAgent, AssistantAgent
 from config import llama_config
 from agent_prompts import content_prompt, priority_prompt, response_prompt
-from langchain_core.output_parsers import JsonOutputParser
 
 from utils import detect_spam, is_internal_email
 import json
