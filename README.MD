@@ -1,4 +1,5 @@
 # Altafalam3-Email-Assistant-Agents
+---
 
 This project utilizes Large Language Models (LLMs) powered by the Autogen multi-agent architecture to automate and streamline email management. By intelligently analyzing, prioritizing, and generating responses for incoming emails, the system enhances productivity and reduces manual effort. Seamless integration with Gmail enables real-time email processing, while WhatsApp notifications ensure timely alerts for high-priority messages, creating an efficient and responsive communication ecosystem.
 ---
