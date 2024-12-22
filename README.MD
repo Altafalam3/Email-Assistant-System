@@ -1,85 +1,161 @@
 # Altafalam3-Email-Assistant-Agents
 
-This project leverages the power of large language models (LLMs) to automate email management tasks. It analyzes incoming emails, prioritizes them, and even generates draft responses.
+This project utilizes Large Language Models (LLMs) powered by the Autogen multi-agent architecture to automate and streamline email management. By intelligently analyzing, prioritizing, and generating responses for incoming emails, the system enhances productivity and reduces manual effort. Seamless integration with Gmail enables real-time email processing, while WhatsApp notifications ensure timely alerts for high-priority messages, creating an efficient and responsive communication ecosystem.
+---
 
-## Key Features
+## 🚀 Key Features
+- **📩 Real-time Email Monitoring**  
+  Continuously monitors your Gmail inbox for new emails.  
 
-* Real-time Email Monitoring: Continuously monitors your Gmail inbox for new emails.
-* Intelligent Email Analysis: Analyzes email content to extract key information such as intent, tone, and keywords.
-* Prioritization: Categorizes emails as SPAM, HIGH, or LOW priority based on user preferences and content analysis.
-* Automated Responses: Generates draft responses for high-priority emails, tailored to the email's context and tone.
+- **🔍 Intelligent Email Analysis**  
+  Analyzes email content to extract intent, tone, and keywords using LLMs.  
 
-## Directory Structure
+- **⚙️ Prioritization System**  
+  Categorizes emails as **SPAM**, **HIGH**, or **LOW** priority based on user preferences and content.  
+
+- **✉️ Automated Draft Responses**  
+  Generates professional or casual draft responses for high-priority emails.  
+
+- **📱 WhatsApp Integration**  
+  Sends notifications for high-priority emails directly to your WhatsApp.  
+
+---
+
+## 📂 Directory Structure
 
 ```
-Altafalalam3-Email-Assistant-Agents/
-    ├── .env.example          # Environment variable configuration template
-    ├── config.py              # Configuration for LLM API access
-    ├── app.py                  # Main application script
-    ├── lib/
-    │   ├── info.py             # Functions for fetching email details and extracting body
-    │   └── attachments.py       # Code for extracting text from email attachments
-    ├── test.py                # Example usage of spam detection functionality
-    ├── agent_prompts.py        # Prompts used for LLM-based email analysis and response generation
-    ├── utils.py               # Utility functions including text pre-processing and spam detection
-    ├── agents.py              # LLM Agents for email processing logic
-    ├── models/                # Directory for storing pre-trained models (e.g., spam detection)
-    │   └── spam_detection_model.joblib  # Spam detection model file (replace with your model)
-    ├── requirements.txt        # List of required Python libraries
+Email-Assistant-Agents/
+│
+├── app/
+│   ├── .env.example               # Template for environment variables
+│   ├── config.py                  # LLM and API configuration
+│   ├── app.py                     # Main Streamlit app for email processing
+│   ├── lib/
+│   │   ├── info.py                # Email extraction (body, subject, sender)
+│   │   └── attachments.py         # Extracts text from attachments (PDFs, etc.)
+│   ├── test.py                    # Test script for spam detection
+│   ├── agent_prompts.py           # Prompts for email analysis & response generation
+│   ├── utils.py                   # Utility functions (spam detection, email parsing)
+│   ├── agents.py                  # LLM agents handling email workflows
+│   ├── models/                    # Directory for storing ML models (e.g., spam detection)
+│   │   └── spam_detection_model.joblib   # spam detection model file
+│   ├── requirements.txt           # Python dependencies
+│
+└── wpbot/                         
+    ├── app.js                     # WhatsApp bot server (Node.js)
+    ├── package.json               # Node.js dependencies
+    ├── package-lock.json          # Locks npm dependencies
+    └── README.md                  # WhatsApp bot README.md
 ```
 
-## Installation
+---
 
-1. Clone the repository:
-   ```
-   git clone <repository_url>
-   ```
+## ⚙️ Installation and Setup
 
-2. Navigate to the project directory:
-   ```
-   cd Altafalalam3-Email-Assistant-Agents
-   ```
+### 1. Clone the Repository  
+```bash
+git clone https://github.com/Altafalam3/Email-Assistant-Agents.git
+cd Email-Assistant-Agents
+```
 
-3. Install required packages:
-   ```
-   pip install -r requirements.txt
-   ```
+---
 
-4. Configure environment variables:
-   - Create a `.env` file by copying the `.env.example` file and filling in the required credentials (`GROQ_API_KEY`, `GMAIL_IMAP_SERVER`, `GMAIL_IMAP_PORT`).
+### 2. Setup the WhatsApp Bot  
+Navigate to the **WhatsApp Bot** directory:  
+```bash
+cd wpbot
+```
 
-5. Run the application:
-   ```
-   streamlit run app.py
-   ```
+Install dependencies:  
+```bash
+npm install
+```
 
-6. Open new terminal, Go to zbot folder:
-   ```
-   npm i
-   ```
+Run the bot:  
+```bash
+npm start
+```
 
-7. Run command :
-   ```
-   npm start
-   ```
+---
 
-## Usage
+### 3. Setup the Streamlit App (Email Assistant)  
 
-1. Enter your Gmail credentials: Provide your email address and app password.
-2. Enter your WhatsApp number: (Optional) For receiving notifications about high-priority emails.
-3. Enter additional preferences: Specify any criteria for prioritizing emails (e.g., keywords, sender domains).
-4. Click "Start Monitoring": The application will start monitoring your inbox and process incoming emails.
+Navigate to the **app** folder:  
+```bash
+cd ../app
+```
 
-## Project Structure
+Install required Python packages:  
+```bash
+pip install -r requirements.txt
+```
 
-- `app.py`: Main application script for email monitoring and processing.
-- `lib/`: Contains utility functions for email handling and data extraction.
-- `models/`: Stores pre-trained models (e.g., spam detection model).
-- `agents.py`: Defines LLM agents for email analysis, prioritization, and response generation.
-- `agent_prompts.py`: Specifies prompts used for interacting with the LLM agents.
-- `utils.py`: Provides helper functions for text processing, spam detection, and other utility tasks.
+---
 
-## Note
+### 4. Configure Environment Variables  
 
-- This README provides a simplified overview. For detailed information and code implementation, refer to the individual files within the project directory.
-- This project requires a GROQ API key for accessing the Llama 3.1 model. You can obtain a key from the GROQ platform.
+- Copy `.env.example` to `.env` and update it with your credentials:  
+```bash
+cp .env.example .env
+```
+- **Required Environment Variables:**  
+  - **GROQ_API_KEY** – GROQ API KEY.  
+  - **GMAIL_IMAP_SERVER** – Gmail IMAP server (`imap.gmail.com`).  
+  - **GMAIL_IMAP_PORT** – IMAP port (`993`).  
+---
+
+### 5. Run the Email Assistant  
+```bash
+streamlit run app.py
+```
+
+---
+
+## 🛠️ How to Use  
+
+1. **Start Monitoring Emails**  
+   - Enter your Gmail credentials (email ID, app password).  
+   - Input your WhatsApp number for notifications (optional).  
+   - Define email priorities (e.g., deployment errors, critical emails).  
+
+2. **Automated Analysis**
+   - The app scans incoming emails.  
+   - Spam emails are **archived**.
+   - High-priority emails trigger **WhatsApp notifications** and draft responses.  
+
+3. **Drafts and Labels**  
+   - Draft responses for important emails are auto-generated and saved to Gmail.  
+   - Emails are labeled as **High Priority** or **Low Priority** based on analysis.  
+
+---
+
+## 🧩 Example Usage
+- **Deployment Alerts** – Get WhatsApp notifications for production issues.
+- **Client Communication** – Generate drafts for high-priority client emails.
+- **Spam Detection** – Archive phishing or scam emails automatically.
+
+---
+
+## 🔑 Environment Variables (Example .env File)
+```plaintext
+GROQ_API_KEY=your_groq_api_key_here
+GMAIL_IMAP_SERVER=imap.gmail.com
+GMAIL_IMAP_PORT=993
+```
+
+---
+
+
+## 🏷️ Labels
+- **Spam Emails** → Moved to **Spam Folder**.
+- **High-Priority Emails** → Labeled and Drafted.
+- **Low-Priority Emails** → Labeled as **Low Priority**.
+---
+
+
+## 👨‍💻 Contributing
+Feel free to submit pull requests to improve the project or fix bugs.
+---
+
+## 📬 Contact
+For issues, contact **altaf526687@gmail.com** or open a GitHub issue.
